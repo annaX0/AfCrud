@@ -30,15 +30,15 @@ public class Pesquisa extends javax.swing.JFrame {
         
         try{
         this.conectar.executarSQL("SELECT "
-            + "nome,"
-            + "cpf,"
-            + "funcao,"
-            + "telefone,"
-            + "endereco,"
-            + "salario" 
-            + " FROM"
-            + " funcionarios"
-            + " WHERE"
+            + " nome,"
+            + " cpf,"
+            + " funcao,"
+            + " telefone,"
+            + " endereco,"
+            + " salario" 
+            + " FROM "
+            + " funcionarios "
+            + " WHERE "
             + " cpf = '" + pesquisaFuncionario + "'" + ";"
         );
         while (this.conectar.getResultSet().next()){
@@ -63,7 +63,7 @@ public class Pesquisa extends javax.swing.JFrame {
             txtNone.setText(novoFuncionario.getNome());
             txtCpf.setText(novoFuncionario.getCPF());
             txtTelefone.setText(novoFuncionario.getTelefone());
-            txtFuncao.setText(novoFuncionario.getFuncao());
+            txtFuncao.setSelectedItem(novoFuncionario.getFuncao());
             txtEndereco.setText(novoFuncionario.getEndereco());
             txtSalario.setText(novoFuncionario.getSalario());
 
@@ -81,7 +81,7 @@ public class Pesquisa extends javax.swing.JFrame {
         novoFuncionario.setNome(txtNone.getText());
         novoFuncionario.setCPF(txtCpf.getText());
         novoFuncionario.setTelefone(txtTelefone.getText());
-        novoFuncionario.setFuncao(txtFuncao.getText());
+        novoFuncionario.setFuncao((String) txtFuncao.getSelectedItem());
         novoFuncionario.setEndereco(txtEndereco.getText());
         novoFuncionario.setSalario(txtSalario.getText());
         
@@ -108,7 +108,7 @@ public class Pesquisa extends javax.swing.JFrame {
         novoFuncionario.setNome(txtNone.getText());
         novoFuncionario.setCPF(txtCpf.getText());
         novoFuncionario.setTelefone(txtTelefone.getText());
-        novoFuncionario.setFuncao(txtFuncao.getText());
+        novoFuncionario.setFuncao((String) txtFuncao.getSelectedItem());
         novoFuncionario.setEndereco(txtEndereco.getText());
         novoFuncionario.setSalario(txtSalario.getText());
         
@@ -149,18 +149,18 @@ public class Pesquisa extends javax.swing.JFrame {
         btnVoltar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        txtCpf = new javax.swing.JTextField();
+        txtCpf = new javax.swing.JFormattedTextField();
         jPanel3 = new javax.swing.JPanel();
         txtSalario = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtFuncao = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtEndereco = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtNone = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtTelefone = new javax.swing.JTextField();
+        txtTelefone = new javax.swing.JFormattedTextField();
+        txtFuncao = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -204,11 +204,17 @@ public class Pesquisa extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnVoltar);
-        btnVoltar.setBounds(20, 30, 58, 40);
+        btnVoltar.setBounds(20, 30, 72, 40);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisa de Funcionários", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 18))); // NOI18N
 
         jLabel4.setText("CPF");
+
+        try {
+            txtCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -217,17 +223,17 @@ public class Pesquisa extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel4)
-                .addGap(4, 4, 4)
-                .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 21, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2);
@@ -245,23 +251,32 @@ public class Pesquisa extends javax.swing.JFrame {
 
         jLabel2.setText("Telefone");
 
+        try {
+            txtTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("# ####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        txtFuncao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Porteiro", "Jardineiro", "Faxineira", "Cozinheira" }));
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNone, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtFuncao, 0, 470, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtTelefone)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNone, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtSalario, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -272,13 +287,13 @@ public class Pesquisa extends javax.swing.JFrame {
                 .addComponent(txtNone, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
                 .addComponent(jLabel2)
-                .addGap(14, 14, 14)
-                .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addGap(4, 4, 4)
                 .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -313,7 +328,7 @@ public class Pesquisa extends javax.swing.JFrame {
         DeletaFuncionario(novoFuncionario);
         txtNone.setText("");
         txtTelefone.setText("");
-        txtFuncao.setText("");
+        txtFuncao.setSelectedItem("");
         txtEndereco.setText("");
         txtSalario.setText("");
     }//GEN-LAST:event_btnDeletarActionPerformed
@@ -383,11 +398,11 @@ public class Pesquisa extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField txtCpf;
+    private javax.swing.JFormattedTextField txtCpf;
     private javax.swing.JTextField txtEndereco;
-    private javax.swing.JTextField txtFuncao;
+    private javax.swing.JComboBox<String> txtFuncao;
     private javax.swing.JTextField txtNone;
     private javax.swing.JTextField txtSalario;
-    private javax.swing.JTextField txtTelefone;
+    private javax.swing.JFormattedTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 }

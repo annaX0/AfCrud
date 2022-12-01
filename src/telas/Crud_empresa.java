@@ -59,13 +59,13 @@ public class Crud_empresa extends javax.swing.JFrame {
         
         try{
         this.conectar.executarSQL("SELECT "
-            + "nome,"
-            + "cnpj,"
-            + "endereco" 
-            + " FROM"
-            + " empresa"
-            + " WHERE"
-            + " cnpj = '" + novaEmpresa + "'" + ";"
+            + " nome,"
+            + " cnpj,"
+            + " endereco " 
+            + " FROM "
+            + " empresa "
+            + " WHERE "
+            + " cnpj = '" + pesquisaEmpresa + "'" + ";"
         );
         while (this.conectar.getResultSet().next()){
             novaEmpresa.setNome(this.conectar.getResultSet().getString(1));
@@ -440,7 +440,7 @@ public class Crud_empresa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarCadActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        empresa( novaEmpresa);
+        empresa(novaEmpresa);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaActionPerformed

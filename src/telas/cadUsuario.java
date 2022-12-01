@@ -31,9 +31,9 @@ public class cadUsuario extends javax.swing.JFrame {
     
     try{
      this.conectar.insertSQL("INSERT INTO usuario("
-            + "nome,"
-            + "email,"
-            + "senha" 
+            + " nome, "
+            + " email, "
+            + " senha " 
             + ") VALUES ("
             + "'" + novoUsuario.getNome() + "',"            
             + "'" + novoUsuario.getEmail()+ "',"

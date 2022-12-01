@@ -56,7 +56,7 @@ public class Menu extends javax.swing.JFrame {
                 btnFuncionarioActionPerformed(evt);
             }
         });
-        getContentPane().add(btnFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 146, -1, 51));
+        getContentPane().add(btnFuncionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 146, 190, 51));
 
         btnAtualizar.setText("ATUALIZAR FUNCIONÁRIOS");
         btnAtualizar.addActionListener(new java.awt.event.ActionListener() {

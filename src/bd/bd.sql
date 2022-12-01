@@ -33,7 +33,7 @@ CREATE TABLE `funcionarios` (
   `endereco` varchar(100) DEFAULT NULL,
   `salario` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`idfuncionario`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 DROP TABLE IF EXISTS empresa;
@@ -61,7 +61,7 @@ create table servicos(
 
 LOCK TABLES `funcionarios` WRITE;
 /*!40000 ALTER TABLE `funcionarios` DISABLE KEYS */;
-INSERT INTO `funcionarios` VALUES (1,'hfdghdfgdf','','','Porteiro','',1),(2,'Anna','000000000','123445','Porteiro','teste, teste',1),(3,'','','','Porteiro','',1),(4,'','','','Porteiro','',1),(5,'','','','Porteiro','',1900),(6,'','','','Porteiro','',1000),(7,'Anna','1000000','23232312','Porteiro','dsfdsf',10000);
+INSERT INTO `funcionarios` VALUES (1,'Anna','000000000','123445','Porteiro','teste',1);
 /*!40000 ALTER TABLE `funcionarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -78,7 +78,7 @@ CREATE TABLE `usuario` (
   `email` varchar(100) DEFAULT NULL,
   `senha` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idusuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87,7 +87,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'','',''),(2,'anna','anna@fmailc.om','123');
+INSERT INTO `usuario` VALUES (1,'anna','anna@email.com','123');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

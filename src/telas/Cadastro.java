@@ -26,7 +26,7 @@ public class Cadastro extends javax.swing.JFrame {
     this.conectar.conectaBanco();
     
         novoFuncionario.setNome(txtNone.getText());
-        novoFuncionario.setCPF(txtTelefone.getText());
+        novoFuncionario.setCPF(txtCpf.getText());
         novoFuncionario.setTelefone(txtTelefone.getText());
         novoFuncionario.setFuncao((String) txtFuncao.getSelectedItem());
         novoFuncionario.setEndereco(txtEndereco.getText());
@@ -106,7 +106,7 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(10, 10, 58, 40);
+        jButton2.setBounds(10, 10, 72, 40);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Funcionários", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 18))); // NOI18N
 

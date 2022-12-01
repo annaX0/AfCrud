@@ -23,7 +23,7 @@ public class Tela_Splash extends javax.swing.JFrame {
             public void run(){
                 try{
                     for (int i=0; i<101;i++){
-                        Thread.sleep(60);
+                        Thread.sleep(15);
                         progressBar.setValue(i);
                 }
                 dispose();  
